@@ -10,6 +10,12 @@ CREATE OR REPLACE TABLE UDW_PROD.UDW_PLATFORM_INTELLIGENCE_SS.PROPENSITY_FEATURE
     -- Category 1: Device Activity (P0)
     -- Source: DIM_USER_APP_STATE_SCD2
     -- ============================================================
+    -- NOTE: Point-in-time filter (VALID_FROM/VALID_TO) is used instead of
+    -- IS_CURRENT = TRUE. IS_CURRENT reflects app-state as of query run-time,
+    -- which for a flight that already ended would pull in-flight and
+    -- post-flight behavior (potentially influenced by the ad exposure itself)
+    -- into what is supposed to be a pre-period covariate. Snapshotting as of
+    -- $PRE_CAMPAIGN_END avoids this leakage.
     WITH device_activity AS (
         SELECT
             TRY_CAST(PSID AS NUMBER(38,0)) AS psid,
@@ -25,7 +31,8 @@ CREATE OR REPLACE TABLE UDW_PROD.UDW_PLATFORM_INTELLIGENCE_SS.PROPENSITY_FEATURE
             SUM(CASE WHEN USER_STATE = 'Light' THEN 1 ELSE 0 END) AS light_app_count,
             MAX(LAST_ACTIVE_DT) AS last_active_date
         FROM UDW_PROD.UDW_PLATFORM_INTELLIGENCE_CS.DIM_USER_APP_STATE_SCD2
-        WHERE IS_CURRENT = TRUE
+        WHERE VALID_FROM <= $PRE_CAMPAIGN_END
+          AND VALID_TO > $PRE_CAMPAIGN_END
         GROUP BY TRY_CAST(PSID AS NUMBER(38,0))
     ),
 
