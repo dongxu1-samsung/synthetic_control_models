@@ -1,0 +1,4 @@
+method,conv_rate_treated,conv_rate_control,abs_lift_pp,rel_lift_pct,placebo_test_passed,notes
+naive_unadjusted,0.10382,0.07392,2.9894,40.4386,N/A (reference only),"Biased -- RTB auction win is not random, naive comparison overstates lift"
+"matched_1to1_caliper (derandomized, avg of 10 repeats)",0.10382,0.09512,0.87,9.1521,YES (after de-randomization fix),"Original single-run estimate (9.21%) confirmed by 10x jittered re-run (9.15% avg, range 8.35-9.00pp std 0.21pp); tie-breaking bias found and fixed via random jitter before caliper matching"
+iptw_stabilized_trimmed,0.09711,0.07985,1.7256,21.6098,YES (after propensity-refit fix),"Primary estimate -- clean covariate balance (max SMD 0.083 < 0.1 threshold), placebo-validated after fixing propensity refit bug in placebo script"
