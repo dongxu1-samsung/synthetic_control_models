@@ -1,0 +1,6 @@
+# Large data files - not committed, regenerate via scripts/01_load_and_clean.py etc.
+measurement/data/
+measurement/data/raw/
+*.parquet
+*.joblib
+.DS_Store
