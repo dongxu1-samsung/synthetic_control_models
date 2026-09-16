@@ -1,0 +1,4 @@
+method,conv_rate_treated,conv_rate_control,abs_lift_pp,rel_lift_pct,placebo_test_passed,notes
+naive_unadjusted,0.06674,0.03217,3.4565,107.4355,N/A (reference only),"Biased -- RTB auction win is not random, naive comparison overstates lift"
+"matched_1to1_caliper (derandomized, avg of 10 repeats)",0.06674,0.03484,3.19,91.5453,YES (p=0.84 single-run; p=0.47 derandomized),"Single-run estimate (91.55% rel. lift) confirmed by 10x jittered re-run (avg abs lift 0.03192pp, range 0.03153-0.03221); tie-breaking risk checked as a precaution (root cause of a bug found on the Apple TV pipeline) -- not actually present here, matching was already unbiased in a single run"
+iptw_stabilized_trimmed,0.06574,0.03249,3.325,102.3243,"YES (p=0.76, refit-on-pseudo-split)","Clean covariate balance (max SMD 0.052 < 0.1 threshold), placebo-validated with propensity model refit on the pseudo-split"
