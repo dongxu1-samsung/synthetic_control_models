@@ -257,3 +257,14 @@ CREATE OR REPLACE TABLE UDW_PROD.UDW_PLATFORM_INTELLIGENCE_SS.PROPENSITY_FEATURE
     LEFT JOIN tv_usage tv ON a.psid = tv.psid
 )
 ;
+
+-- ============================================================
+-- Execution verification (run 2026-09-16 against Snowflake):
+--   Table: UDW_PROD.UDW_PLATFORM_INTELLIGENCE_SS.PROPENSITY_FEATURES_HULU
+--   Total rows / distinct psid : 5,964,077
+--   Exposed (test)             : 734,974
+--   Control (eligible, unexposed): 5,229,103
+--   Converted (RAW_CONVERSIONS > 0): 217,283
+--   Matches source pool SYNTHETIC_CONTROL_MEASUREMENT_USER_POOL_3201601007625
+--   restricted to ELIGIBLE_BID_REQUESTS_ENTERED_AUCTION > 0.
+-- ============================================================
