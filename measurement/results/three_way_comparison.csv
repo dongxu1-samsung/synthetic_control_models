@@ -1,0 +1,4 @@
+method,rel_lift_pct
+matched_1to1_caliper,9.2091
+iptw_stabilized_trimmed,21.6098
+aipw_doubly_robust,14.992466482851059
