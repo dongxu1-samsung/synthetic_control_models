@@ -1,0 +1,4 @@
+method,rel_lift_pct,abs_lift,ci_95_lo,ci_95_hi
+matched_1to1_caliper,-7.6205,-0.00855,-0.00921,-0.0079
+iptw_stabilized_trimmed,9.431,0.00799,0.00739,0.00862
+aipw_doubly_robust_ps_trimmed,1.0352820898044575,0.0008955770020986084,9.668916782243039e-05,0.0016944648363747864
